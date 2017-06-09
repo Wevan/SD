@@ -71,14 +71,12 @@ public class UpLoad extends HttpServlet {
                 i++;
 
             }
-            //todo newPath
 
         }
         String bookName = bookInfo[0];
         String writer = bookInfo[1];
         String cbs = bookInfo[2];
         String ite = bookInfo[3];
-        String amount = bookInfo[4];
         Books books = new Books();
         books.setBookname(bookName);
         books.setWriter(writer);

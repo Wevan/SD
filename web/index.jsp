@@ -68,8 +68,15 @@
 <div id="header">
     <jsp:include page="header.jsp"/>
 </div>
+<%
+    response.setHeader("Pragma", "No-Cache");
+
+    response.setHeader("Cache-Control", "No-Cache");
+
+    response.setDateHeader("Expires", 0);
+%>
 <div id="main">
-    <iframe id="left" src="nav.jsp" frameborder="1px" >
+    <iframe id="left" src="nav.jsp" frameborder="1px">
     </iframe>
     <iframe id="right" src="allInfo.jsp" name="show"></iframe>
 </div>

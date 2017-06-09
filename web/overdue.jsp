@@ -1,3 +1,7 @@
+<%@ page import="bean.Books" %>
+<%@ page import="dao.BookDao" %>
+<%@ page import="java.util.List" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%--
   Created by IntelliJ IDEA.
   User: Wean
@@ -9,8 +13,43 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
-<body>
+<body bgcolor="white">
+
+
+<%
+    BookDao bookDao = new BookDao();
+    List<Books> list = bookDao.overdue();
+    for (Books books : list
+            ) {
+
+
+
+%>
+<table>
+    <tr>
+        <td ><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
+        </td>
+    </tr>
+    <tr>
+        <td><%="借阅号"+books.getIslend()%>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <fmt:formatDate value="<%=books.getDate()%>" pattern="yyyy-MM-dd" />
+        </td>
+    </tr>
+
+</table>
+
+<hr>
+<%
+    }
+%>
+
+
 
 </body>
 </html>

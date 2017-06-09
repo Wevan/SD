@@ -56,17 +56,4 @@ public class LenderDao {
         return row;
     }
 
-    public void overdue(){
-        Date date=  new Date();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sql="SELECT date FROM ksdb.books WHERE isLend!=1";
-        try {
-            ps=conn.prepareStatement(sql);
-            rs=ps.executeQuery();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 }

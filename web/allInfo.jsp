@@ -1,5 +1,6 @@
 <%@ page import="bean.Books" %>
 <%@ page import="dao.BookDao" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Wean
@@ -18,30 +19,38 @@
             padding-bottom: 10px;
             padding-top: 160px;
         }
-        button{
-            background-color:lightskyblue ;
+
+        button {
+            background-color: lightskyblue;
             border: none;
         }
     </style>
+
 </head>
 <body bgcolor="white">
 
 
-    <%
-        BookDao bookDao = new BookDao();
-        List<Books> list = bookDao.listBookInfo();
-        for (Books books : list
-                ) {
+<%
+    response.setHeader("Pragma", "No-Cache");
+    response.setHeader("Cache-Control", "No-Cache");
+    response.setDateHeader("Expires", 0);
+    BookDao bookDao = new BookDao();
+    List<Books> list = new ArrayList<>();
+    System.out.println("1 list = " + list);
+    list = bookDao.listBookInfo();
+    System.out.println("2 list = " + list);
+
+    for (Books books : list
+            ) {
 
 
-
-    %>
-    <table>
+%>
+<table>
     <tr>
-        <td rowspan="4"><img src="<%=books.getImgPath()%>" width="130px" height="180px"></td>
+        <td rowspan="4"><img alt="图片不存在" src="<%=books.getImgPath()%>" width="130px" height="180px"></td>
     </tr>
     <tr>
-        <td ><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
+        <td><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
         </td>
     </tr>
     <tr>
@@ -55,19 +64,23 @@
         </td>
 
     </tr>
-        <tr>
-            <a href="/del?bookId=<%=books.getBookid()%>" class="right"><button>删除</button></a>
-        </tr>
-        <tr>
-            <a href="/modify.jsp?bookId=<%=books.getBookid()%>&bookName=<%=books.getBookname()%>&writer=<%=books.getWriter()%>&cbs=<%=books.getCbs()%>&items=<%=books.getItems()%>" class="right"><button>修改</button></a>
-        </tr>
+    <tr>
+        <a href="/del?bookId=<%=books.getBookid()%>" class="right">
+            <button>删除</button>
+        </a>
+    </tr>
+    <tr>
+        <a href="/modify.jsp?bookId=<%=books.getBookid()%>&bookName=<%=books.getBookname()%>&writer=<%=books.getWriter()%>&cbs=<%=books.getCbs()%>&items=<%=books.getItems()%>"
+           class="right">
+            <button>修改</button>
+        </a>
+    </tr>
 </table>
 
-    <hr>
-    <%
-        }
-    %>
-
+<hr>
+<%
+    }
+%>
 
 
 </body>

@@ -45,7 +45,7 @@
     </column>
     <column id="17" parent="9" name="date">
       <Position>7</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>date|0</DataType>
     </column>
     <column id="18" parent="9" name="imgpath">
       <Position>8</Position>

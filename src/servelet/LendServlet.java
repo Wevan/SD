@@ -21,9 +21,13 @@ public class LendServlet extends HttpServlet {
 
         String bookId=request.getParameter("bookId");
         String id=request.getParameter("id");
-        bookDao.lendBook(Long.valueOf(id), Long.valueOf(bookId));
+        int a=bookDao.lendBook(Long.valueOf(id), Long.valueOf(bookId));
+        if (a>0){
+            response.sendRedirect("lendSuc.jsp");
+        }else {
+            response.sendRedirect("lendFail.jsp");
+        }
 
-        response.sendRedirect("lendSuc.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

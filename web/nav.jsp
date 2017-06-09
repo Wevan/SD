@@ -43,7 +43,7 @@
     <hr>
     <a href="returnBook.jsp" target="show">送还图书</a>
     <hr>
-    <a href="addInfo.jsp" target="show">逾期未还图书</a>
+    <a href="overdue.jsp" target="show">逾期未还图书</a>
     <hr>
     <a href="addInfo.jsp" target="show">退出系统</a>
     <img src="image/nav.jpg" width="151px" height="80px" style="margin-top: 20px"/>

@@ -1,6 +1,7 @@
 package dao;
 
 import bean.Books;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import util.JDBCUtil;
 
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -91,6 +93,7 @@ public class BookDao {
             ps.setString(3, books.getCbs());
             ps.setString(4, books.getItems());
             ps.setString(5, String.valueOf(books.getBookid()));
+
             row = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -159,11 +162,48 @@ public class BookDao {
         return list;
     }
 
-    public List<Books> overdue() {
-        List<Books> list = new ArrayList<Books>();
-        String sql = "";
 
+    public List<Books> overdue(){
+        List<Books> list=new ArrayList<>();
+        Date date1=  new Date();
+        Date date2;
+
+        String sql="SELECT date,isLend,bookName,bookId FROM ksdb.books WHERE isLend!=1";
+        try {
+            ps=conn.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                date2=rs.getDate("date");
+
+                if (daysBetween(date2,date1)>30){
+                    Books books=new Books();
+                    books.setBookid(rs.getLong("bookId"));
+                    books.setBookname(rs.getString("bookName"));
+                    books.setIslend(rs.getLong("isLend"));
+                    books.setDate(rs.getTimestamp("date"));
+                    list.add(books);
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return list;
+    }
+
+    public static int daysBetween(Date date1,Date date2) throws ParseException
+    {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+
+            date1=sdf.parse(sdf.format(date1));
+            date2=sdf.parse(sdf.format(date2));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        long days=date2.getTime()-date1.getTime();
+        long between_days=days/(1000*3600*24);
+        return Integer.parseInt(String.valueOf(between_days));
     }
 
 }
