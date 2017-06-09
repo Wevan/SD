@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,15 +56,17 @@ public class LenderDao {
         return row;
     }
 
-    public int lendBook(Long id,Long bookId){
-        int row=0;
-        String sql=null;
+    public void overdue(){
+        Date date=  new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sql="SELECT date FROM ksdb.books WHERE isLend!=1";
         try {
-            ps = conn.prepareStatement(sql);
+            ps=conn.prepareStatement(sql);
+            rs=ps.executeQuery();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return row;
+
     }
 }
