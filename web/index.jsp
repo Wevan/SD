@@ -1,4 +1,6 @@
-<%--
+<%@ page import="bean.Books" %>
+<%@ page import="dao.BookDao" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Wean
   Date: 2017/5/30
@@ -6,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>$Title$</title>
@@ -65,6 +68,13 @@
     </style>
 </head>
 <body>
+<%
+    BookDao bookDao = new BookDao();
+    List<Books> list = bookDao.overdue();
+    String str = String.valueOf(list.size());
+%>
+
+
 <div id="header">
     <jsp:include page="header.jsp"/>
 </div>
@@ -74,8 +84,9 @@
     response.setHeader("Cache-Control", "No-Cache");
 
     response.setDateHeader("Expires", 0);
+
 %>
-<div id="main">
+<div id="main" onload="return see(str);">
     <iframe id="left" src="nav.jsp" frameborder="1px">
     </iframe>
     <iframe id="right" src="allInfo.jsp" name="show"></iframe>
@@ -83,5 +94,11 @@
 <div id="footer">
     <jsp:include page="footer.jsp"/>
 </div>
+<script type="text/javascript" language="javascript">
+    alert(<%=str%>+
+        "本书逾期未还！"
+    )
+    ;
+</script>
 </body>
 </html>

@@ -19,8 +19,13 @@ public class ReturnServlet extends HttpServlet {
         BookDao bookDao=new BookDao();
         String bookId=request.getParameter("bookId");
 //        String id=request.getParameter("id");
-        bookDao.returnBook(Long.valueOf(bookId));
-
+        int a=0;
+        a=bookDao.returnBook(Long.valueOf(bookId));
+        if (a>0){
+            response.sendRedirect("returnsuc.jsp");
+        }else {
+            response.sendRedirect("");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

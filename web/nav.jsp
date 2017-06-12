@@ -24,7 +24,16 @@
             align-content: center;
         }
     </style>
-
+    <script>
+        function del() {
+            var msg = "确定退出系统吗？";
+            if (confirm(msg)==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
 </head>
 <body bgcolor="white">
 <b style="margin-top: 10px">功能列表</b><br>
@@ -45,7 +54,7 @@
     <hr>
     <a href="overdue.jsp" target="show">逾期未还图书</a>
     <hr>
-    <a href="addInfo.jsp" target="show">退出系统</a>
+    <a href="enterSys.jsp" target="show" onclick="javascript:return del()">退出系统</a>
     <img src="image/nav.jpg" width="151px" height="80px" style="margin-top: 20px"/>
 </div>
 </body>
