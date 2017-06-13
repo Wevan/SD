@@ -27,7 +27,7 @@ public class BookDao {
         List<Books> list = new ArrayList();
         try {
 
-            String sql = "SELECT * FROM books WHERE isLend=1 GROUP BY items";
+            String sql = "SELECT * FROM books WHERE isLend=1";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -48,6 +48,48 @@ public class BookDao {
         return list;
     }
 
+
+    public List getItems(){
+        List item=new ArrayList();
+        try {
+
+            String sql = "SELECT * FROM books WHERE isLend=1 GROUP BY items";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                item.add(rs.getString("items"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return item;
+    }
+
+    public List<Books> selectBook(String item){
+        List<Books> list = new ArrayList();
+        try {
+
+            String sql = "SELECT * FROM books WHERE isLend=1 AND items=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,item);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Books books = new Books();
+                books.setBookid(rs.getLong("bookId"));
+                books.setBookname(rs.getString("bookName"));
+                books.setCbs(rs.getString("cbs"));
+                books.setWriter(rs.getString("writer"));
+                books.setIslend(rs.getLong("isLend"));
+                books.setItems(rs.getString("items"));
+                books.setDate(rs.getTimestamp("date"));
+                books.setImgPath(rs.getString("imgpath"));
+                list.add(books);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     public int insertInfo(Books books) {
         int row = 0;

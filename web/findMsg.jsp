@@ -31,31 +31,21 @@
             width: 200px;
             border: none;
         }
-        /*.right {*/
-            /*padding-right: 20px;*/
-            /*padding-bottom: 10px;*/
-            /*padding-top: 160px;*/
-        /*}*/
+
     </style>
 </head>
 <body>
 <h1>
     查询信息
 </h1>
-<table>
-    <tr>
-        <td>
-            <a href="lendMsg.jsp" class="right">
-                <button>查询借阅情况</button>
-            </a>
-        </td>
-        <td>
-            <a href="findBook.jsp" class="right">
-                <button>查询图书信息</button>
-            </a>
-        </td>
-    </tr>
-</table>
-
+<div>
+    <a href="lendMsg.jsp" class="right">
+        <button>查询借阅情况</button>
+    </a><br>
+    <br>
+    <a href="findBook.jsp" class="right">
+        <button>查询图书信息</button>
+    </a>
+</div>
 </body>
 </html>

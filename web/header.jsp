@@ -24,7 +24,10 @@
 </head>
 <body>
 <div id="center" align="center">
-    图书管理系统
+    <font color="white">
+        <B>图书管理系统</B>
+    </font>
+
 </div>
 
 

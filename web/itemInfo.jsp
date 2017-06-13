@@ -44,7 +44,7 @@
     List<Books> list = new ArrayList<>();
     List item = new ArrayList();
     System.out.println("1 list = " + list);
-    list = bookDao.listBookInfo();
+    list = bookDao.selectBook(request.getParameter("item"));
     item = bookDao.getItems();
     System.out.println("2 list = " + list);
 
@@ -54,7 +54,7 @@
 
     <a href="/itemInfo.jsp?item=<%=i.toString()%>">
         <button><%=i.toString()%></button>
-    </a>&nbsp;
+    </a>
 
 <%
     }
@@ -66,7 +66,7 @@
 %>
 <table>
     <tr>
-        <td rowspan="4"><img alt="图片不存在" src="<%=books.getImgPath()%>" width="130px" height="180px"></td>
+        <td rowspan="4"><img alt="请刷新数据库" src="<%=books.getImgPath()%>" width="130px" height="180px"></td>
     </tr>
     <tr>
         <td><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
