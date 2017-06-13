@@ -1,5 +1,6 @@
 package dao;
 
+import bean.Books;
 import bean.Lender;
 import util.JDBCUtil;
 
@@ -56,4 +57,26 @@ public class LenderDao {
         return row;
     }
 
+    public List<Books> findLender(String id){
+        List<Books> list = new ArrayList();
+        String sql="SELECT * FROM ksdb.books WHERE isLend=?";
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,id);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                Books books = new Books();
+                books.setBookid(rs.getLong("bookId"));
+                books.setImgPath(rs.getString("imgpath"));
+                books.setBookname(rs.getString("bookName"));
+                books.setCbs(rs.getString("cbs"));
+                books.setWriter(rs.getString("writer"));
+                books.setItems(rs.getString("items"));
+                list.add(books);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

@@ -27,7 +27,7 @@ public class BookDao {
         List<Books> list = new ArrayList();
         try {
 
-            String sql = "SELECT * FROM books WHERE isLend=1";
+            String sql = "SELECT * FROM books WHERE isLend=1 GROUP BY items";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {

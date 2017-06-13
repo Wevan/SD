@@ -42,7 +42,7 @@
     <hr>
     <a href="addInfo.jsp" target="show">添加图书</a>
     <hr>
-    <a href="findBook.jsp" target="show">查询图书</a>
+    <a href="findMsg.jsp" target="show">查询信息</a>
     <hr>
     <a href="allLender.jsp" target="show">显示借阅人</a>
     <hr>
