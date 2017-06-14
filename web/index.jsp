@@ -76,7 +76,7 @@
 
 
 <div id="header">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="header.jsp" flush="true"/>
 </div>
 <%
     response.setHeader("Pragma", "No-Cache");
@@ -92,7 +92,7 @@
     <iframe id="right" src="allInfo.jsp" name="show"></iframe>
 </div>
 <div id="footer">
-    <jsp:include page="footer.jsp"/>
+    <jsp:include page="footer.jsp" flush="true"/>
 </div>
 <script type="text/javascript" language="javascript">
     alert(<%=str%>+

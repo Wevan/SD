@@ -24,7 +24,7 @@ public class ReturnServlet extends HttpServlet {
         if (a>0){
             response.sendRedirect("returnsuc.jsp");
         }else {
-            response.sendRedirect("");
+            response.sendRedirect("returnFail.jsp");
         }
     }
 
