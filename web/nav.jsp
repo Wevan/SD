@@ -54,7 +54,7 @@
     <hr>
     <a href="overdue.jsp" target="show">逾期未还图书</a>
     <hr>
-    <a href="enterSys.jsp" target="_parent" onclick="javascript:return del()">退出系统</a>
+    <a href="/out" target="_parent" onclick="javascript:return del()">退出系统</a>
     <img src="image/nav.jpg" width="151px" height="80px" style="margin-top: 20px"/>
 </div>
 </body>

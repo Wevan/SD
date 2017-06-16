@@ -1,7 +1,9 @@
 <%@ page import="bean.Books" %>
 <%@ page import="dao.LenderDao" %>
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Lender" %><%--
+<%@ page import="bean.Lender" %>
+<%@ page import="dao.BookDao" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: Wean
   Date: 2017/6/13
@@ -43,7 +45,7 @@
         <td rowspan="4"><img src="<%=books.getImgPath()%>" width="130px" height="180px"></td>
     </tr>
     <tr>
-        <td ><%=books.getBookname() + "( 书号：" + books.getBookid() + "    被借阅号："+request.getParameter("lendmsg")+")"%>
+        <td ><%=books.getBookname() + "( 书号：" + books.getBookid() + "    借阅号："+request.getParameter("lendmsg")+"  借阅人："+books.getLender().getName()+")"%>
         </td>
     </tr>
     <tr>
@@ -57,6 +59,22 @@
         </td>
 
     </tr>
+    <%
+        BookDao bookDao=new BookDao();
+        Date date=new Date();
+        Date date1;
+        date1 = books.getDate();
+        int a=bookDao.daysBetween(date1,date);
+        if (a>30){
+    %>
+    <tr>
+        <a href="/overreturn?bookId=<%=books.getBookid()%>&id=<%=books.getIslend()%>" class="right">
+            <button>已交罚金</button>
+        </a>
+    </tr>
+    <%
+        }
+    %>
 
 </table>
 

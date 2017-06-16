@@ -24,15 +24,12 @@
             background-color: lightskyblue;
             border: none;
         }
+        a{
+            text-decoration-line: none;
+        }
 
     </style>
-<script>
 
-        var n=document.getElementById('rand');
-        n.style.background(rand(0,255),rand(0,255),rand(0,255));
-
-
-</script>
 </head>
 <body bgcolor="white">
 

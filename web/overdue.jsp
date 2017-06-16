@@ -1,7 +1,7 @@
 <%@ page import="bean.Books" %>
 <%@ page import="dao.BookDao" %>
 <%@ page import="java.util.List" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Wean
@@ -13,7 +13,19 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        .right {
+            float: right;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-top: 60px;
+        }
 
+        button {
+            background-color: lightskyblue;
+            border: none;
+        }
+    </style>
 </head>
 <body bgcolor="white">
 
@@ -26,30 +38,32 @@
             ) {
 
 
-
 %>
 <table>
     <tr>
-        <td ><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
+        <td><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
         </td>
     </tr>
     <tr>
-        <td><%="借阅号"+books.getIslend()%>
+        <td><%="借阅号" + books.getIslend()%>
         </td>
     </tr>
     <tr>
         <td>
-            <fmt:formatDate value="<%=books.getDate()%>" pattern="yyyy-MM-dd" />
+            <fmt:formatDate value="<%=books.getDate()%>" pattern="yyyy-MM-dd"/>
         </td>
     </tr>
-
+    <tr>
+        <a href="/overreturn?bookId=<%=books.getBookid()%>&id=<%=books.getIslend()%>" class="right">
+            <button>已交罚金</button>
+        </a>
+    </tr>
 </table>
 
 <hr>
 <%
     }
 %>
-
 
 
 </body>

@@ -27,7 +27,7 @@ public class BookDao {
         List<Books> list = new ArrayList();
         try {
 
-            String sql = "SELECT * FROM books WHERE isLend=1";
+            String sql = "SELECT * FROM books";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -147,7 +147,7 @@ public class BookDao {
         int row = 0;
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sql = "UPDATE books SET isLend=?,date=? WHERE bookId=?";
+        String sql = "UPDATE books SET isLend=?,date=? WHERE bookId=? AND isLend=1";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, String.valueOf(id));
@@ -160,13 +160,33 @@ public class BookDao {
         return row;
     }
 
-    public int returnBook(Long bookId) {
+    public int returnBook(Long bookId,Long id) {
         int row = 0;
-        String sql = "UPDATE books SET isLend=? WHERE bookId=?";
+        String sql1="SELECT date FROM ksdb.books WHERE isLend=? AND bookId=?";
+        Date date1=  new Date();
+        Date date2;
+        try {
+            ps = conn.prepareStatement(sql1);
+            ps.setString(1, String.valueOf(id));
+            ps.setString(2, String.valueOf(bookId));
+            rs=ps.executeQuery();
+            while (rs.next()){
+                date2=rs.getDate("date");
+
+                if (daysBetween(date2,date1)>30){
+                    row=-1;
+                    return row;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String sql = "UPDATE books SET isLend=?,date=NULL WHERE bookId=? AND isLend=?";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, "1");
             ps.setString(2, String.valueOf(bookId));
+            ps.setString(3, String.valueOf(id));
             row = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -246,6 +266,19 @@ public class BookDao {
         long days=date2.getTime()-date1.getTime();
         long between_days=days/(1000*3600*24);
         return Integer.parseInt(String.valueOf(between_days));
+    }
+
+    public int overreturn(String bookId){
+        int row=0;
+        String sql = "UPDATE books SET isLend=1,date=NULL WHERE bookId=?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, String.valueOf(bookId));
+            row = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return row;
     }
 
 }

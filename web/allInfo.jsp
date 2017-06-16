@@ -8,7 +8,7 @@
   Time: 19:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" autoFlush="true" buffer="none" %>
 <html>
 <head>
     <title>Title</title>
@@ -24,15 +24,11 @@
             background-color: lightskyblue;
             border: none;
         }
-
+        a{
+            text-decoration-line: none;
+        }
     </style>
-<script>
 
-        var n=document.getElementById('rand');
-        n.style.background(rand(0,255),rand(0,255),rand(0,255));
-
-
-</script>
 </head>
 <body bgcolor="white">
 
@@ -52,9 +48,10 @@
             ) {
 %>
 
-    <a href="/itemInfo.jsp?item=<%=i.toString()%>">
-        <button><%=i.toString()%></button>
-    </a>&nbsp;
+<a href="/itemInfo.jsp?item=<%=i.toString()%>">
+    <button><%=i.toString()%>
+    </button>
+</a>&nbsp;
 
 <%
     }
@@ -69,7 +66,14 @@
         <td rowspan="4"><img alt="图片不存在" src="<%=books.getImgPath()%>" width="130px" height="180px"></td>
     </tr>
     <tr>
-        <td><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
+        <td><%=books.getBookname() + "( 书号：" + books.getBookid() + "）"%>
+            <%
+                if (books.getIslend()!=1){
+            %>
+            <img src="image/lend.png" width="24px" height="24px">
+            <%
+                }
+            %>
         </td>
     </tr>
     <tr>

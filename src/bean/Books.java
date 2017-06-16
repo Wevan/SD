@@ -10,6 +10,7 @@ public class Books {
     private String items;
     private java.sql.Timestamp date;
     private String imgPath;
+    private Lender lender;
 
     public String getBookname() {
         return bookname;
@@ -86,5 +87,13 @@ public class Books {
     @Override
     public String toString() {
         return bookname + "   " + writer;
+    }
+
+    public Lender getLender() {
+        return lender;
+    }
+
+    public void setLender(Lender lender) {
+        this.lender = lender;
     }
 }

@@ -30,7 +30,7 @@
 
         #main {
             margin-left: 42%;
-            margin-top:200px;
+            margin-top: 200px;
             height: 250px;
         }
 
@@ -39,13 +39,15 @@
             padding: 0;
         }
 
-        #password{
+        #password {
             width: 200px;
             height: 40px;
         }
-        #btn{
+
+        #btn {
             height: 40px;
         }
+
         body {
             -webkit-background-image: url(image/bg.jpg);
             -moz-background-image: url(image/bg.jpg);
@@ -58,39 +60,33 @@
     </style>
     <script>
         var str;
-        function aa(){
-            str=enter.password.value;
+        function aa() {
+            str = enter.password.value;
             var ipt = document.getElementById("enter").getElementsByTagName("input");
-            if(ipt[0].value.length == 0){
+            if (ipt[0].value.length == 0) {
                 alert("请填写密码");
                 ipt[0].focus();
                 return false;
-            }else {
-                if (str==="123456"){
-                    return true;
-                }else {
-                    alert("口令错误！");
-                    document.getElementById("password").value="";
-                    return false;
-                }
+            } else {
+                return true;
             }
-
         }
+
+
     </script>
 </head>
 <body>
 <div id="header">
     <jsp:include page="header.jsp"/>
 </div>
+
 <%
     response.setHeader("Pragma", "No-Cache");
-
     response.setHeader("Cache-Control", "No-Cache");
-
     response.setDateHeader("Expires", 0);
 %>
 <div id="main">
-    <form action="index.jsp" method="post" id="enter" name="enter" onsubmit="return aa();">
+    <form action="check" method="post" id="enter" name="enter" onsubmit="return aa();">
         <input type="password" name="password" placeholder="请输入口令" id="password">&nbsp;
         <input type="submit" value="进入系统" id="btn">
     </form>

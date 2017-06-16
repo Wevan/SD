@@ -20,9 +20,16 @@ public class LenderServlet extends HttpServlet {
         Lender lender=new Lender();
         lender.setName(request.getParameter("name"));
         lender.setWorkid(Long.valueOf(request.getParameter("workId")));
+        int a=0;
+
         LenderDao lenderDao=new LenderDao();
-        lenderDao.insertInfo(lender);
-        response.sendRedirect("allLender.jsp");
+        a=lenderDao.insertInfo(lender);
+        if (a>0){
+
+            response.sendRedirect("allLender.jsp");
+        }else {
+            response.sendRedirect("newLenderFail.jsp");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

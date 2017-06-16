@@ -10,22 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Wean on 2017/6/5.
+ * Created by Wean on 2017/6/16.
  */
-@WebServlet(name = "ReturnServlet",urlPatterns = "/return")
-public class ReturnServlet extends HttpServlet {
+@WebServlet(name = "OverReturnServlet",urlPatterns = "/overreturn")
+public class OverReturnServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
         BookDao bookDao=new BookDao();
+        request.setCharacterEncoding("utf-8");
         String bookId=request.getParameter("bookId");
-        String id=request.getParameter("id");
         int a=0;
-        a=bookDao.returnBook(Long.valueOf(bookId), Long.valueOf(id));
-        if (a==-1){
-            response.sendRedirect("overreturn.jsp");
-        }else if (a>0){
+        a=bookDao.overreturn(bookId);
+        if (a>0){
             response.sendRedirect("returnsuc.jsp");
-        }else if (a==0){
+        }else {
             response.sendRedirect("returnFail.jsp");
         }
     }

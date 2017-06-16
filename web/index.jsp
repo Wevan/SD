@@ -7,7 +7,7 @@
   Time: 19:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" autoFlush="true" %>
 
 <html>
 <head>
@@ -80,17 +80,21 @@
 </div>
 <%
     response.setHeader("Pragma", "No-Cache");
-
     response.setHeader("Cache-Control", "No-Cache");
-
     response.setDateHeader("Expires", 0);
+    if (session.getAttribute("enter").equals("1")) {
 
 %>
-<div id="main" onload="return see(str);">
+<div id="main">
     <iframe id="left" src="nav.jsp" frameborder="1px">
     </iframe>
     <iframe id="right" src="allInfo.jsp" name="show"></iframe>
 </div>
+<%
+    } else {
+        response.sendRedirect("enterSys.jsp");
+    }
+%>
 <div id="footer">
     <jsp:include page="footer.jsp" flush="true"/>
 </div>
@@ -100,5 +104,6 @@
     )
     ;
 </script>
+
 </body>
 </html>

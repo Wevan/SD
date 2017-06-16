@@ -52,14 +52,17 @@ public class LenderDao {
             ps.setLong(2, lender.getWorkid());
             row = ps.executeUpdate();
         } catch (SQLException e) {
+            row=0;
             e.printStackTrace();
+        }finally {
+
+            return row;
         }
-        return row;
     }
 
     public List<Books> findLender(String id){
         List<Books> list = new ArrayList();
-        String sql="SELECT * FROM ksdb.books WHERE isLend=?";
+        String sql="SELECT * FROM lender,books WHERE books.isLend=lender.id AND lender.id=?";
         try {
             ps=conn.prepareStatement(sql);
             ps.setString(1,id);
@@ -72,6 +75,10 @@ public class LenderDao {
                 books.setCbs(rs.getString("cbs"));
                 books.setWriter(rs.getString("writer"));
                 books.setItems(rs.getString("items"));
+                books.setDate(rs.getTimestamp("date"));
+                Lender lender = new Lender();
+                lender.setName(rs.getString("name"));
+                books.setLender(lender);
                 list.add(books);
             }
         } catch (SQLException e) {
