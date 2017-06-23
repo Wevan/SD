@@ -20,19 +20,16 @@
             width: 100%;
             height: 50px;
             padding-top: 20px;
-            background-color: plum;
+            background-color: lightgray;
             font-family: 微软雅黑, serif;
 
         }
     </style>
 </head>
 <body>
-
-
     <div id="center" align="center">
         关于我们<br>
-        董娇阳 常淼然
-        曹华珠 郭蕾<br>
+        高艳阳 徐小东 曹华珠<br>
         Copyright©
     </div>
 </body>

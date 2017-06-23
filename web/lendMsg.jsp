@@ -26,18 +26,18 @@
         }
     </style>
     <script>
-        function Cmd(){
-            var ipt = document.getElementById("find").getElementsByTagName("input");
-            for(var i = 0; i < ipt.length; i++){
-                if(ipt[i].value.length == 0){
-                    alert("所有文本框都需要填写");
-                    ipt[i].focus();
-                    return false;
-                }
+    function Cmd(){
+        var ipt = document.getElementById("find").getElementsByTagName("input");
+        for(var i = 0; i < ipt.length; i++){
+            if(ipt[i].value.length == 0){
+                alert("所有文本框都需要填写");
+                ipt[i].focus();
+                return false;
             }
-            return true;
         }
-    </script>
+        return true;
+    }
+</script>
 </head>
 <body>
 <h1>查找借阅信息</h1>

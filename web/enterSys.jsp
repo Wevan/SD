@@ -8,6 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Title</title>
     <style>
         button {
@@ -15,37 +21,19 @@
             border: none;
         }
 
-        #header {
-            width: 100%;
-            height: auto;
-
+        .input-group {
+            width: 300px;
         }
 
-        #footer {
-            margin-top: 20px;
-            width: 100%;
-            height: 100px;
-            background-color: plum;
-        }
-
-        #main {
-            margin-left: 42%;
-            margin-top: 200px;
+        .main {
+            margin-left: 40%;
+            margin-top: 250px;
             height: 250px;
         }
 
         head, body {
             margin: 0;
             padding: 0;
-        }
-
-        #password {
-            width: 200px;
-            height: 40px;
-        }
-
-        #btn {
-            height: 40px;
         }
 
         body {
@@ -76,23 +64,31 @@
     </script>
 </head>
 <body>
-<div id="header">
-    <jsp:include page="header.jsp"/>
-</div>
 
 <%
     response.setHeader("Pragma", "No-Cache");
     response.setHeader("Cache-Control", "No-Cache");
     response.setDateHeader("Expires", 0);
 %>
-<div id="main">
-    <form action="check" method="post" id="enter" name="enter" onsubmit="return aa();">
-        <input type="password" name="password" placeholder="请输入口令" id="password">&nbsp;
-        <input type="submit" value="进入系统" id="btn">
-    </form>
-</div>
-<div id="footer">
-    <jsp:include page="footer.jsp"/>
-</div>
+
+<form action="check" method="post" id="enter" name="enter" onsubmit="return aa();" class="main">
+
+    <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                  <img src="image/user.png" width="13px" height="13px">
+                </span>
+        <input type="text" class="form-control" placeholder="Username" name="username" aria-describedby="basic-addon1">
+    </div>
+    <br>
+
+    <div class="input-group">
+        <input type="password" class="form-control" name="password" placeholder="password">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
+      </span>
+    </div>
+
+</form>
+
 </body>
 </html>

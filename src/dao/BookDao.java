@@ -147,6 +147,8 @@ public class BookDao {
         int row = 0;
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sql2="";
+        // TODO: 2017/6/19  使用触发器
         String sql = "UPDATE books SET isLend=?,date=? WHERE bookId=? AND isLend=1";
         try {
             ps = conn.prepareStatement(sql);

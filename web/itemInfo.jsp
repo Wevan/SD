@@ -11,6 +11,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Title</title>
     <style>
         .right {
@@ -21,13 +27,19 @@
         }
 
         button {
+            margin: 10px 5px 5px 5px;
             background-color: lightskyblue;
             border: none;
         }
-        a{
+        #a-item{
             text-decoration-line: none;
         }
-
+        img{
+            padding-left: 15px;
+        }
+        table{
+            margin-left: 15px;
+        }
     </style>
 
 </head>
@@ -49,7 +61,7 @@
             ) {
 %>
 
-    <a href="/itemInfo.jsp?item=<%=i.toString()%>">
+    <a href="itemInfo.jsp?item=<%=i.toString()%>" id="a-item">
         <button><%=i.toString()%></button>
     </a>
 
@@ -63,18 +75,24 @@
 %>
 <table>
     <tr>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+    &nbsp;&nbsp;
+    <tr>
         <td rowspan="4"><img alt="请刷新数据库" src="<%=books.getImgPath()%>" width="130px" height="180px"></td>
     </tr>
     <tr>
         <td><%=books.getBookname() + "( 书号：" + books.getBookid() + ")"%>
         </td>
     </tr>
+    &nbsp;&nbsp;
     <tr>
         <td><%=books.getWriter()%>
         </td>
         <td><%=books.getCbs()%>
         </td>
     </tr>
+    &nbsp;&nbsp;
     <tr>
         <td><%=books.getItems()%>
         </td>
@@ -82,13 +100,13 @@
     </tr>
     <tr>
         <a href="/del?bookId=<%=books.getBookid()%>" class="right">
-            <button>删除</button>
+            <button class="btn btn-danger">删除</button>
         </a>
     </tr>
     <tr>
         <a href="/modify.jsp?bookId=<%=books.getBookid()%>&bookName=<%=books.getBookname()%>&writer=<%=books.getWriter()%>&cbs=<%=books.getCbs()%>&items=<%=books.getItems()%>"
            class="right">
-            <button>修改</button>
+            <button class="btn btn-success">修改</button>
         </a>
     </tr>
 </table>
@@ -97,7 +115,5 @@
 <%
     }
 %>
-
-
 </body>
 </html>
