@@ -147,7 +147,22 @@ public class BookDao {
         int row = 0;
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sql2="";
+        String sql2="SELECT amount FROM lender WHERE id=?";
+        try {
+            ps=conn.prepareStatement(sql2);
+            ps.setString(1, String.valueOf(id));
+            rs=ps.executeQuery();
+            if (rs.next()){
+                int a=rs.getInt("amount");
+                if (a==5){
+                    row=-1;
+                    return row;
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         // TODO: 2017/6/19  使用触发器
         String sql = "UPDATE books SET isLend=?,date=? WHERE bookId=? AND isLend=1";
         try {

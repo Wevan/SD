@@ -22,9 +22,14 @@ public class LendServlet extends HttpServlet {
         String bookId=request.getParameter("bookId");
         String id=request.getParameter("id");
         int a=bookDao.lendBook(Long.valueOf(id), Long.valueOf(bookId));
+        System.out.println("a is "+a);
+        if (a==-1){
+            response.sendRedirect("lendMax.jsp");
+        }
         if (a>0){
             response.sendRedirect("lendSuc.jsp");
-        }else {
+        }
+        if (a==0){
             response.sendRedirect("lendFail.jsp");
         }
 
